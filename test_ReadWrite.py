@@ -5,7 +5,7 @@ import ReadWrite
 
 def test___init__():
     # Create an instance of ReadWrite.
-    ReadWrite_instance = ReadWrite()
+    ReadWrite_instance = ReadWrite.ReadWrite()
 
     assert ReadWrite_instance.inputFilePath == sys.argv[1]
 
@@ -25,7 +25,7 @@ def test___init__():
 # def test_CheckCommandLine():
 #     # Create an instance of ReadWrite.
 #     ReadWrite_instance = ReadWrite()
-    
+
 #     # Setup.
 #     inputFilePath = "input.nfa"
 

@@ -9,7 +9,9 @@ class ReadWrite:
 
     # Constructor for the ReadWrite class.
     def __init__(self):
-        self.inputFilePath = sys.argv[1]  # Second argument is the file path (python3 doesn't count as an argument).
+        self.inputFilePath = sys.argv[
+            1
+        ]  # Second argument is the file path (python3 doesn't count as an argument).
 
     # # Checks the command line arguments to see if the correct amount of arguments are passed.
     # def CheckCommandLine(self):
@@ -64,6 +66,7 @@ class ReadWrite:
     #     file.close()
 
     #     print(f"File '{outputFilePath}' has been created and written to.")
+
 
 # self = ReadWrite()
 # self.CheckCommandLine()
