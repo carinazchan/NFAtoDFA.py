@@ -1,0 +1,29 @@
+name: NFA to DFA Unit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  lint:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Test with pytest
+      run: |
+        pip install pytest pytest-cov
+        pytest test_*.py --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+    - name: Upload pytest test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: Coverage
+        path: htmlcov
+      # Use always() to always run this step to publish test results when there are test failures
+      if: ${{ always() }}
