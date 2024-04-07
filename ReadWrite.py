@@ -1,25 +1,28 @@
 import sys
 
-'''
+"""
 Reads from an input file and writes to an output file.
-'''
-class ReadWrite:
+"""
 
-    '''
+
+class ReadWrite:
+    """
     Constructor for the ReadWrite class.
-    '''
+    """
+
     def __init__(self, inputFilePath, outputFilePath):
         self.inputFilePath = inputFilePath
         self.outputFilePath = outputFilePath
 
-    '''
+    """
     Checks the command line arguments to see if the correct amount of arguments are passed.
-    '''
+    """
+
     def CheckCommandLine(self):
-        #sys.argv: A list of command-line arguments passed to a Python script. Script name is the first element (sys.argv[0])
-        if len(sys.argv) != 2: #If the length of the command line arguments is != 2
+        # sys.argv: A list of command-line arguments passed to a Python script. Script name is the first element (sys.argv[0])
+        if len(sys.argv) != 2:  # If the length of the command line arguments is != 2
             print("Need two arguments: YourScript.py InputFile.txt")
-        sys.exit(1) #Exit the program
+        sys.exit(1)  # Exit the program
 
     # def SetInputFilePath(self):
     #     self.inputFilePath = sys.argv[1] #Second argument is the file path
@@ -53,12 +56,13 @@ class ReadWrite:
     #             #print(line.strip())  # Example: Print each line after removing leading and trailing whitespaces
     #     return (Q, sigma, q0, F, delta)
 
-    '''
+    """
     Writes to the output file.
-    '''
+    """
+
     def WriteToOutput(self, outputFilePath):
         # Open the file in write mode
-        with open(outputFilePath, 'w') as file:
+        with open(outputFilePath, "w") as file:
             # Write content to the file
             file.write("Hello, this is a sample text.\n")
             file.write("Writing to a text file in Python is easy!")
