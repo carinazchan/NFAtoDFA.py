@@ -70,6 +70,3 @@ class ReadWrite:
         file.close()
 
         print(f"File '{outputFilePath}' has been created and written to.")
-
-    def foo():
-        print('blah blah')
