@@ -25,6 +25,7 @@ class ReadWrite:
         with open(self.inputFilePath, "r") as file:
             # Iterate through each line in the file.
             fileLines = file.read().split("\n")
+            print(fileLines)
 
             # Read Q: line[0].
             Q = fileLines[0].replace("{", "").replace("}", "").split("\t")
@@ -48,8 +49,8 @@ class ReadWrite:
                 else:
                     delta.append(deltaLine)
 
-        print(Q, sigma, q0, F, delta)
-
         returnList = [Q, sigma, q0, F, delta]
+
+        print(returnList)
 
         return returnList
