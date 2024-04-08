@@ -17,8 +17,7 @@ class ReadWrite:
     def CheckCommandLine(self):
         # sys.argv: A list of command-line arguments passed to a Python script. Script name is the first element (sys.argv[0]).
         if len(sys.argv) != 2:  # If the length of the command line arguments is != 2
-            print("Need two arguments: YourScript.py InputFile.txt")
-            sys.exit(1)  # Exit the program. Shows a red x in the terminal.
+            return "Need two arguments: YourScript.py InputFile.txt"
         else:
             return
 
