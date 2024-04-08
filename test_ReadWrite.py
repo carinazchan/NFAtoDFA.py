@@ -8,37 +8,35 @@ from unittest.mock import patch
 def test___init__():
     with patch.object(sys, "argv", ["test.py", "argument1"]):
         # Create an instance of ReadWrite.
-        ReadWrite_instance = ReadWrite.ReadWrite(sys.argv)
+        ReadWriteInstance = ReadWrite.ReadWrite(["script", "test"])
 
         # Check if the inputFilePath is taken from the command line arguments.
-        assert ReadWrite_instance.inputFilePath == sys.argv[1]
+        assert ReadWriteInstance.inputFilePath == "test"
 
 
 def test_CheckCommandLine():
     # Test if the CheckCommandLine method returns None when the correct amount of arguments are passed.
     with patch.object(sys, "argv", ["test.py", "argument1"]):
         # Create an instance of ReadWrite.
-        ReadWrite_instance = ReadWrite.ReadWrite(sys.argv)
+        ReadWriteInstance = ReadWrite.ReadWrite(sys.argv)
 
         # Check if the CheckCommandLine method returns None.
-        assert ReadWrite_instance.CheckCommandLine() == None
+        assert ReadWriteInstance.CheckCommandLine() == None
 
     # Test if the CheckCommandLine method returns an error message when the incorrect amount of arguments are passed.
     with patch.object(sys, "argv", ["test.py", "argument1", "argument2"]):
         # Create an instance of ReadWrite.
-        ReadWrite_instance = ReadWrite.ReadWrite(sys.argv)
+        ReadWriteInstance = ReadWrite.ReadWrite(sys.argv)
 
         # Check if the CheckCommandLine method returns None.
         assert (
-            ReadWrite_instance.CheckCommandLine()
+            ReadWriteInstance.CheckCommandLine()
             == "Need two arguments: YourScript.py InputFile.txt"
         )
 
 
 def test_GetLine():
-    # Create an instance of ReadWrite.
-    ReadWrite_instance = ReadWrite.ReadWrite(sys.argv)
-
+    # Create a mock file contents.
     mockFileContents = """
     {1} {2}	{3}
     a	b
@@ -55,9 +53,13 @@ def test_GetLine():
     """
 
     # Create a mock file object.
-    mock_file = io.StringIO(mockFileContents)
+    mockFile = io.StringIO(mockFileContents)
 
-    assert ReadWrite_instance.GetLine(mock_file) == (
+    # Create an instance of ReadWrite.
+    ReadWriteInstance = ReadWrite.ReadWrite(mockFile)
+
+    # Check if the GetLine method returns the correct values.
+    assert ReadWriteInstance.GetLine() == (
         ["1", "2", "3"]["a", "b"]["1"]["1"][
             "{1}, EPS = {3}",
             "{1}, b = {2}",
