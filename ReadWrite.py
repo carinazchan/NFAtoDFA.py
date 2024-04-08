@@ -55,18 +55,3 @@ class ReadWrite:
             print(delta)
         
         return (Q, sigma, q0, F, delta)
-
-    # """
-    # Writes to the output file.
-    # """
-
-    # def WriteToOutput(self, outputFilePath):
-    #     # Open the file in write mode
-    #     with open(outputFilePath, "w") as file:
-    #         # Write content to the file
-    #         file.write("Hello, this is a sample text.\n")
-    #         file.write("Writing to a text file in Python is easy!")
-
-    #     file.close()
-
-    #     print(f"File '{outputFilePath}' has been created and written to.")
