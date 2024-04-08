@@ -49,4 +49,7 @@ class ReadWrite:
                     delta.append(deltaLine)
 
         print(Q, sigma, q0, F, delta)
-        return (Q, sigma, q0, F, delta)
+
+        returnList = [Q, sigma, q0, F, delta]
+
+        return returnList
