@@ -56,10 +56,10 @@ def test_GetLine():
     mockFile = io.StringIO(mockFileContents)
 
     # Create an instance of ReadWrite.
-    ReadWriteInstance = ReadWrite.ReadWrite(mockFile)
+    ReadWriteInstance = ReadWrite.ReadWrite(sys.argv)
 
     # Check if the GetLine method returns the correct values.
-    assert ReadWriteInstance.GetLine() == (
+    assert ReadWriteInstance.GetLine(mockFile) == (
         ["1", "2", "3"]["a", "b"]["1"]["1"][
             "{1}, EPS = {3}",
             "{1}, b = {2}",
