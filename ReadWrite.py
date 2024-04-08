@@ -44,7 +44,7 @@ class ReadWrite:
             print(F)
 
             # Read transitions: lines[4:]. Reads from line 4 to the end of the file.
-            delta = [] # List of transitions.
+            delta = []  # List of transitions.
             for deltaLine in fileLines[4:]:
                 if deltaLine == "BEGIN" or deltaLine == "":
                     continue
@@ -53,5 +53,5 @@ class ReadWrite:
                 else:
                     delta.append(deltaLine)
             print(delta)
-        
+
         return (Q, sigma, q0, F, delta)
