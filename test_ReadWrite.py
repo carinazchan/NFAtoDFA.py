@@ -20,6 +20,7 @@ def test_command_line_args(mock_args):
 def test___init__(mock_args):
     # Create an instance of ReadWrite.
     ReadWrite_instance = ReadWrite.ReadWrite()
+    print("hello")
 
     # Check if the inputFilePath is taken from the command line arguments.
     assert ReadWrite_instance.inputFilePath == mock_args.argv[1]
