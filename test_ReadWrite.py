@@ -36,19 +36,18 @@ def test_CheckCommandLine():
 
 def test_GetLine():
     # Create a mock file contents.
-    mockFileContents = """{1}    {2}	{3}
-    a	b
-    {1}
-    {1}
-    BEGIN
-    {1}, EPS = {3}
-    {1}, b = {2}
-    {2}, a = {3}
-    {2}, b = {3}
-    {2}, a = {2}
-    {3}, a = {1}
-    END
-    """
+    mockFileContents = """{1}\t{2}\t{3}
+a\tb
+{1}
+{1}
+BEGIN
+{1}, EPS = {3}
+{1}, b = {2}
+{2}, a = {3}
+{2}, b = {3}
+{2}, a = {2}
+{3}, a = {1}
+END"""
 
     # Create an instance of ReadWrite.
     readWriteInstance = ReadWrite.ReadWrite(sys.argv)
