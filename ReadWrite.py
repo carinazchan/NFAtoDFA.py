@@ -50,6 +50,4 @@ class ReadWrite:
 
         returnList = [Q, sigma, q0, F, delta]
 
-        #print(returnList)
-
         return returnList
