@@ -28,19 +28,15 @@ class ReadWrite:
 
             # Read Q: line[0].
             Q = fileLines[0].replace("{", "").replace("}", "").split("\t")
-            print(Q)
 
             # Read Sigma: lines[1].
             sigma = fileLines[1].split("\t")
-            print(sigma)
 
             # Read q0: lines[2].
             q0 = fileLines[2].replace("{", "").replace("}", "").split("\t")
-            print(q0)
 
             # Read F: lines[3].
             F = fileLines[3].replace("{", "").replace("}", "").split("\t")
-            print(F)
 
             # Read transitions: lines[4:]. Reads from line 4 to the end of the file.
             delta = []  # List of transitions.
@@ -51,6 +47,6 @@ class ReadWrite:
                     break
                 else:
                     delta.append(deltaLine)
-            print(delta)
 
+        print(Q, sigma, q0, F, delta)
         return (Q, sigma, q0, F, delta)
