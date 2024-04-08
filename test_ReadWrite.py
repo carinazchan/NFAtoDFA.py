@@ -1,40 +1,72 @@
 import pytest
 import sys
 import ReadWrite
+from unittest.mock import patch, mock_open
 
 
 def test___init__():
+    with patch.object(sys, "argv", ["test.py", "argument1"]):
+        # Create an instance of ReadWrite.
+        readWriteInstance = ReadWrite.ReadWrite(["script", "test"])
+
+        # Check if the inputFilePath is taken from the command line arguments.
+        assert readWriteInstance.inputFilePath == "test"
+
+
+def test_CheckCommandLine():
+    # Test if the CheckCommandLine method returns None when the correct amount of arguments are passed.
+    with patch.object(sys, "argv", ["test.py", "argument1"]):
+        # Create an instance of ReadWrite.
+        readWriteInstance = ReadWrite.ReadWrite(sys.argv)
+
+        # Check if the CheckCommandLine method returns None.
+        assert readWriteInstance.CheckCommandLine() == None
+
+    # Test if the CheckCommandLine method returns an error message when the incorrect amount of arguments are passed.
+    with patch.object(sys, "argv", ["test.py", "argument1", "argument2"]):
+        # Create an instance of ReadWrite.
+        readWriteInstance = ReadWrite.ReadWrite(sys.argv)
+
+        # Check if the CheckCommandLine method returns None.
+        assert (
+            readWriteInstance.CheckCommandLine()
+            == "Need two arguments: YourScript.py InputFile.txt"
+        )
+
+
+def test_GetLine():
+    # Create a mock file contents.
+    mockFileContents = """{1}\t{2}\t{3}
+a\tb
+{1}
+{1}
+BEGIN
+{1}, EPS = {3}
+{1}, b = {2}
+{2}, a = {3}
+{2}, b = {3}
+{2}, a = {2}
+{3}, a = {1}
+END"""
+
     # Create an instance of ReadWrite.
-    ReadWrite_instance = ReadWrite.ReadWrite()
+    readWriteInstance = ReadWrite.ReadWrite(sys.argv)
 
-    assert ReadWrite_instance.inputFilePath == sys.argv[1]
-
-
-# def test_WriteToOutput():
-#     # Setup.
-#     inputFilePath = "input.nfa"
-#     outputFilePath = "output.dfa"
-
-#     # Create an instance of ReadWrite.
-#     ReadWrite_instance = ReadWrite(inputFilePath, outputFilePath)
-
-#     # Call the method to be tested.
-#     ReadWrite_instance.WriteToOutput(outputFilePath)
-
-
-# def test_CheckCommandLine():
-#     # Create an instance of ReadWrite.
-#     ReadWrite_instance = ReadWrite()
-
-#     # Setup.
-#     inputFilePath = "input.nfa"
-
-#     # Call the method to be tested.
-#     with pytest.raises(SystemExit) as pytest_wrapped_e:
-#         ReadWrite_instance.CheckCommandLine()
-
-#     # pytest_wrapped_e is an instance of pytest.raises which acts as a context manager that catches exceptions.
-#     assert (
-#         pytest_wrapped_e.type == SystemExit
-#     )  # Check if the exception type is SystemExit.
-#     assert pytest_wrapped_e.value.code == 1  # Check if the exception code is 1.
+    with patch("builtins.open", mock_open(read_data=mockFileContents)):
+        # Check if the GetLine method returns the correct values.
+        assert readWriteInstance.GetLine() == (
+            [
+                ["1", "2", "3"],
+                ["a", "b"],
+                ["1"],
+                ["1"],
+                [
+                    "{1}, EPS = {3}",
+                    "{1}, b = {2}",
+                    "{2}, a = {3}",
+                    "{2}, b = {3}",
+                    "{2}, a = {2}",
+                    "{3}, a = {1}",
+                ],
+            ]
+        )
