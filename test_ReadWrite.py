@@ -58,13 +58,17 @@ def test_GetLine():
         # Check if the GetLine method returns the correct values.
         assert readWriteInstance.GetLine() == (
             [
-                ["1", "2", "3"]["a", "b"]["1"]["1"][
+                ["1", "2", "3"],
+                ["a", "b"],
+                ["1"],
+                ["1"],
+                [
                     "{1}, EPS = {3}",
                     "{1}, b = {2}",
                     "{2}, a = {3}",
                     "{2}, b = {3}",
                     "{2}, a = {2}",
                     "{3}, a = {1}",
-                ]
+                ],
             ]
         )
