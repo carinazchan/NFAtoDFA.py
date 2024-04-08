@@ -1,8 +1,7 @@
 import pytest
 import sys
-import io
 import ReadWrite
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 
 
 def test___init__():
@@ -55,14 +54,15 @@ def test_GetLine():
     # Create an instance of ReadWrite.
     readWriteInstance = ReadWrite.ReadWrite(sys.argv)
 
-    # Check if the GetLine method returns the correct values.
-    assert readWriteInstance.GetLine(mockFileContents) == (
-        ["1", "2", "3"]["a", "b"]["1"]["1"][
-            "{1}, EPS = {3}",
-            "{1}, b = {2}",
-            "{2}, a = {3}",
-            "{2}, b = {3}",
-            "{2}, a = {2}",
-            "{3}, a = {1}",
-        ]
-    )
+    with patch("builtins.open", mock_open(read_data=mockFileContents)):
+        # Check if the GetLine method returns the correct values.
+        assert readWriteInstance.GetLine() == (
+            ["1", "2", "3"]["a", "b"]["1"]["1"][
+                "{1}, EPS = {3}",
+                "{1}, b = {2}",
+                "{2}, a = {3}",
+                "{2}, b = {3}",
+                "{2}, a = {2}",
+                "{3}, a = {1}",
+            ]
+        )
