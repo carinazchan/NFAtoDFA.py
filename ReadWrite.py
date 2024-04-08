@@ -8,8 +8,8 @@ Reads from an input file and writes to an output file.
 class ReadWrite:
 
     # Constructor for the ReadWrite class.
-    def __init__(self):
-        self.inputFilePath = sys.argv[
+    def __init__(self, sysArgv=sys.argv):
+        self.inputFilePath = sysArgv[
             1
         ]  # Second argument is the file path (python3 doesn't count as an argument).
 
