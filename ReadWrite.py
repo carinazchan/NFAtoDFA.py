@@ -21,8 +21,8 @@ class ReadWrite:
         else:
             return
 
-    def GetLine(self, inputFilePath):
-        with open(inputFilePath, "r") as file:  # Open the file in read mode ('r').
+    def GetLine(self, inputFile):
+        with inputFile as file:
             # Iterate through each line in the file.
             fileLines = file.read().split("\n")
 
