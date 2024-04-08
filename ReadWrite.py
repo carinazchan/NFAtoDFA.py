@@ -25,8 +25,6 @@ class ReadWrite:
         with open(self.inputFilePath, "r") as file:
             # Iterate through each line in the file.
             fileLines = file.read().split("\n")
-            file.seek(0)
-            print(file.read())
 
             # Read Q: line[0].
             Q = fileLines[0].replace("{", "").replace("}", "").split("\t")

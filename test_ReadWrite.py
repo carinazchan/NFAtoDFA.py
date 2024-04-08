@@ -36,8 +36,7 @@ def test_CheckCommandLine():
 
 def test_GetLine():
     # Create a mock file contents.
-    mockFileContents = """
-    {1} {2}	{3}
+    mockFileContents = """{1} {2}	{3}
     a	b
     {1}
     {1}
