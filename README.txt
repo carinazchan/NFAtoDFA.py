@@ -8,3 +8,5 @@ Instructions:
 Sources:
 - https://www.tutorialspoint.com/python/python_command_line_arguments.htm
 - https://www.askpython.com/python/examples/fixed-takes-0-positional-arguments-but-1-was-given
+- https://youtu.be/mzlH8lp4ISA?si=Dm0MQbNj-wggFp1s
+
