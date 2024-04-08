@@ -10,14 +10,14 @@ def mock_sys_argv(monkeypatch):
 
 def test___init__():
     # Call the constructor for ReadWrite.
-    read_write_instance = ReadWrite()
+    read_write_instance = ReadWrite.ReadWrite()
 
     # Check if the inputFilePath attribute is set correctly.
     assert read_write_instance.inputFilePath == 'dummy.txt'
 
 def test_CheckCommandLine_correct_args(capsys):
     # Create an instance of ReadWrite.
-    read_write_instance = ReadWrite()
+    read_write_instance = ReadWrite.ReadWrite()
 
     # Call CheckCommandLine.
     read_write_instance.CheckCommandLine()
@@ -31,7 +31,7 @@ def test_CheckCommandLine_incorrect_args(capsys):
     sys.argv = ['script_name.py']
 
     # Create an instance of ReadWrite.
-    read_write_instance = ReadWrite()
+    read_write_instance = ReadWrite.ReadWrite()
 
     # Call CheckCommandLine.
     with pytest.raises(SystemExit) as e:
