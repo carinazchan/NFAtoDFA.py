@@ -5,25 +5,22 @@ from unittest.mock import Mock
 
 
 @pytest.fixture
-# Fixture that creates a mock object to represent command-line arguments.
-def mock_args(monkeypatch):
-    args = Mock()
-    monkeypatch.setattr("sys.argv", ["test.py", "--arg1", "value1", "--arg2", "value2"])
-    return args
+def mock_argv():
+    return ['test.py', 'input_file.txt']
+
+def test_readwrite_constructor(mock_argv, monkeypatch):
+    monkeypatch.setattr(sys, 'argv', mock_argv)
+    rw = ReadWrite()
+    assert rw.inputFilePath == 'input_file.txt'
 
 
-def test_command_line_args(mock_args):
-    assert mock_args.arg1 == "value1"
-    assert mock_args.arg2 == "value2"
+# def test___init__(mock_args):
+#     # Create an instance of ReadWrite.
+#     ReadWrite_instance = ReadWrite.ReadWrite()
+#     print("hello")
 
-
-def test___init__(mock_args):
-    # Create an instance of ReadWrite.
-    ReadWrite_instance = ReadWrite.ReadWrite()
-    print("hello")
-
-    # Check if the inputFilePath is taken from the command line arguments.
-    assert ReadWrite_instance.inputFilePath == mock_args.argv[1]
+#     # Check if the inputFilePath is taken from the command line arguments.
+#     assert ReadWrite_instance.inputFilePath == mock_args.argv[1]
 
 
 # def test_WriteToOutput():
