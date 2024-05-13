@@ -2,6 +2,7 @@ import pytest
 import sys
 import ReadWrite
 from unittest.mock import patch, mock_open
+from epsilon_closure import epsilon_closure  # Import the epsilon_closure function
 
 
 def test___init__():
@@ -54,19 +55,38 @@ END"""
 
     with patch("builtins.open", mock_open(read_data=mockFileContents)):
         # Check if the GetLine method returns the correct values.
-        assert readWriteInstance.GetLine() == (
+        assert readWriteInstance.GetLine() == [
+            ["1", "2", "3"],
+            ["a", "b"],
+            ["1"],
+            ["1"],
             [
-                ["1", "2", "3"],
-                ["a", "b"],
-                ["1"],
-                ["1"],
-                [
-                    "{1}, EPS = {3}",
-                    "{1}, b = {2}",
-                    "{2}, a = {3}",
-                    "{2}, b = {3}",
-                    "{2}, a = {2}",
-                    "{3}, a = {1}",
-                ],
-            ]
-        )
+                "{1}, EPS = {3}",
+                "{1}, b = {2}",
+                "{2}, a = {3}",
+                "{2}, b = {3}",
+                "{2}, a = {2}",
+                "{3}, a = {1}",
+            ],
+        ]
+
+
+# New test for the epsilon_closure function
+def test_epsilon_closure():
+    transitions = [
+        "{1}, EPS = {3}",
+        "{1}, b = {2}",
+        "{2}, a = {3}",
+        "{2}, b = {3}",
+        "{2}, a = {2}",
+        "{3}, a = {1}"
+    ]
+
+    # Check epsilon closure for state 1
+    assert epsilon_closure(transitions, "1") == {"1", "3"}
+
+    # Check epsilon closure for state 2
+    assert epsilon_closure(transitions, "2") == {"2"}
+
+    # Check epsilon closure for state 3
+    assert epsilon_closure(transitions, "3") == {"3"}
